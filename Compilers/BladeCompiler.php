@@ -111,7 +111,9 @@ class BladeCompiler extends Compiler implements CompilerInterface
         }
 
         if (! is_null($this->cachePath)) {
-            $contents = $this->compileString($this->files->get($this->getPath()));
+            // add default blypo viewhelper content
+            $filecontent = '@namespace(\AuM\Blypo\ViewHelpers,b) '.$this->files->get($this->getPath());
+            $contents = $this->compileString($filecontent);
 
             $this->files->put($this->getCompiledPath($this->getPath()), $contents);
         }
