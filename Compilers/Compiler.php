@@ -60,6 +60,10 @@ abstract class Compiler
         if (! $this->cachePath || ! $this->files->exists($compiled)) {
             return true;
         }
+        
+        if(isset($_GET['no_cache']) && $_GET['no_cache'] == 1){
+            return true;
+        }
 
         $lastModified = $this->files->lastModified($path);
 
